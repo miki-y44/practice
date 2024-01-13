@@ -1,0 +1,104 @@
+h1,.search{
+    color: gray;
+    text-align: center;
+    
+}
+body{
+    font-family:"Yu Gothic UI";
+}
+
+.search{
+    margin-bottom: 30px;
+
+}
+.product-table {
+    width: 70%;
+    border:solid #333 1px;
+    border-collapse:collapse;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+.product-table th{
+    background-color:white;
+}
+.name{
+    height: 30px;
+}
+.body{
+    height: 60px;
+}
+
+.product-table tr{
+    border:solid #333 1px;
+    
+}
+
+.product-table tr:nth-child(odd){
+    background-color: rgba(130, 170, 170, 0.4);
+
+}
+
+
+.regist-btn{
+    display: block;
+    width: 100px;
+    padding: 6px 0;
+    margin: auto;
+    background: #3e3c9f;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 100vh;
+        
+}
+.regist-btn:hover {
+     background    :rgb(182, 182, 238);     
+}
+
+.detail-btn{
+    display: inline-block;
+    width: 40.29px;
+    height: 25.64px;
+    padding: 0px 3px;
+    
+    background: #e4ff6b;
+    color: #180808;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-right: 7px;
+    
+    
+    
+}
+
+.detail-btn:hover {
+     background    :rgb(249, 255, 199);     
+}
+.btns{
+    display:flex;
+    justify-content: center;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 8px;
+    list-style-type: none;
+    padding: 0;
+}
+.pagination a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 3px;
+    background-color: #dfe2f0;
+    color: #0c89e2;
+}
+.pagination a:hover {
+    text-decoration: none;
+}

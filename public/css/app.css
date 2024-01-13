@@ -1,0 +1,137 @@
+span{
+    color: red;
+}
+h1{
+    text-align: center;
+}
+body{
+    font-family:"Yu Gothic UI";
+    
+}
+
+.view-group{
+    border:solid #333 1px;
+    width: 450px;
+    height: 720px;
+    margin: 0 auto;
+}
+.detail-group{
+    border:solid #333 1px;
+    width: 450px;
+    height: 500px;
+    margin: 0 auto;
+}
+.detail-table{
+    width: 450px;
+    height: 400px;
+   
+}
+.detail-table tr{
+    height: 50px;
+}
+.detail-table th{
+    text-align: left;
+    padding-left: 40px;
+}
+.detail-table td{   
+    float: left;
+    margin:12px 0px 0px  80px;
+    
+}
+.comment{
+    height: 20px;
+    color: #000;
+    padding: 10px;
+}
+
+.btn{
+    display:flex;
+    margin-top: 30px;
+    
+}
+.edit{
+    display: block;
+    width: 70px;
+    height: 25.64px;
+    padding: 0px 3px;
+    margin-left: 40px;
+    background: #e4ff6b;
+    color: #180808;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3px;
+    border-color: buttonborder;
+   
+}
+.edit:hover {
+    background    :rgb(249, 255, 199);     
+}
+
+.back{
+    display: block;
+    width: 70px;
+    height: 25.64px;
+    padding: 0px 3px;
+    
+    background: #e4ff6b;
+    color: #180808;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3px;
+    border-color: buttonborder;
+    margin-left:30px;
+    
+}
+.back:hover {
+    background    :rgb(249, 255, 199);     
+}
+.regist{
+    margin:30px 0px 0px 120px;
+    width: 70px;
+}
+.back-2{
+    display: block;
+    width: 70px;
+    height: 25.64px;
+    padding: 0px 3px;
+    margin:30px 0px 0px 30px;
+    background: #e4ff6b;
+    color: #180808;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3px;
+    border-color: buttonborder;
+}
+.back-2:hover {
+    background    :rgb(249, 255, 199);  
+}
+.form-group{
+    overflow: hidden;
+	margin-bottom: 20px;
+    
+}
+label,.id{
+    float: left;
+	margin:15px 20px 0px 20px;
+    
+	width:100px;
+	border-left: solid 3px #FF6701;
+	padding-left: 10px;
+
+}
+.form-control,.ID{
+    float: left;
+	width: 250px;
+    margin-top: 15px;
+}
+
+.comment{
+    width: 13em;
+    height: 4em; 
+    border: solid 1.5px #000;
+}
+
+
+p{
+    float: right;
+}
