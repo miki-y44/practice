@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use DB;
 
 
@@ -30,7 +31,8 @@ class product extends Model
     }
 
     //テーブル取得
-    public function getProductList(){
+    public function getProductList()
+    {
         $products = DB::table('products')->get();
         return $products;
         
@@ -64,15 +66,23 @@ class product extends Model
         return $result;
     }
     //検索処理
-    public function productSearch($keyword)
-    {        
-            $productsSearch=DB::table('products')
-            ->join('companies','products.company_id','=','companies.id')
-            ->select('products.*','companies.company_name')
-            ->where('products.product_name','LIKE',"%{$keyword}%")
-            ->orwhere('companies.company_name','LIKE',"%{$keyword}%")
-            ->get();
-            return $productsSearch;
+    public function scopeKeywordFilter($query,string $keyword=null)
+    {   
+        if(!$keyword){
+            return $query;
+        }
+        return $query->where('product_name', 'LIKE', "%{$keyword}%");
     }
-   
+    public function scopeCompanyIdFilter($query,string $companyId=null)
+    {
+        if(!$companyId){
+            return $query;
+        }
+        return $query->join('companies','products.company_id','=','companies.id')
+                      ->select('products.*')
+                      ->where('company_id',$companyId);
+    }
 }
+
+
+

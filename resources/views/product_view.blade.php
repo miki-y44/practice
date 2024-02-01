@@ -29,14 +29,14 @@
                 <form action ="{{route('product_view')}}" method = "GET">
                   @csrf
                     <input type="text" class="form-control" id="keyword" name="keyword" placeholder="検索キーワード">
-                    
-                    <select class="form-control" id="companyId" name="companyId" value="{{$companyId}}"placeholder="メーカー名" >
+                     
+                    <select class="form-control" id="companyId" name="companyId" placeholder="メーカー名" >
                           <option value="" selected disabled>メーカー名</option> 
-                        @foreach($companies as $company)  
+                        @foreach($companies as $company) 
                           <option value="{{$company->id}}">{{$company->company_name}}</option>
-                        @endforeach  
-                      </select>
-                   
+                        @endforeach 
+                    </select>
+                    
                     <button type='submit' class="btn btn-default" name='search'>検索</button>
                 </form>
             </div>

@@ -8,10 +8,6 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
-use Illuminate\Support\Str;
-use Illuminate\Pagination\Paginator;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
 
 
 
@@ -25,34 +21,22 @@ class ProductController extends Controller
     }
 
     public function showProduct_view(Request $request)
-    {
-
-        
+    {   
         $model = new Company();
         $companies = $model->getcompanyList();
-        $products = Product::with('company')->get();
-
-        $keyword = $request->input('keyword');
-        $companyId=$request->input('companyId');
+             
         
-        $query=Product::query();
         
-        if(!empty($keyword)){
-            $query->where('product_name', 'LIKE', "%{$keyword}%");
-        }
+        $products = Product::keywordFilter($request->keyword)
+            ->companyIdFilter($request->companyId)
+            ->paginate(10)
+            ->appends($request->all());
         
-        if(!empty($companyId)){
-            $query->join('companies','products.company_id','=','companies.id')
-            ->select('products.*')
-            ->where('company_id',$companyId);
-        }
-        
-        $products = $query->Paginate(10);
-        
-        return view('product_view',compact('products','companies','keyword','companyId'))
+        return view('product_view',compact('products','companies'))
                     ->with('page_id',request()->page);
-              
     }
+    
+
 
 
 //商品登録画面
@@ -107,17 +91,17 @@ class ProductController extends Controller
 //削除処理
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect()->route('product_view');
-       
+        DB::beginTransaction();
+        
+        try{
+            $product = Product::find($id);
+            $product->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollback();
+            return back();
+        }
+        return redirect(route('product_view'))
+        ->with('page_id',request()->page_id);
     }    
-
-
-    
-    
-
-    
-
-
-}
+}    
