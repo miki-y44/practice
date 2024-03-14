@@ -27,15 +27,41 @@ class ProductController extends Controller
              
         
         
-        $products = Product::keywordFilter($request->keyword)
+        $products = Product::sortable()
+            ->keywordFilter($request->keyword)
             ->companyIdFilter($request->companyId)
+            ->kagenPriceFilter($request->price1)
+            ->jougenPriceFilter($request->price2)
+            ->kagenStockFilter($request->stock1)
+            ->jougenStockFilter($request->stock2)
             ->paginate(10)
             ->appends($request->all());
-        
+           
         return view('product_view',compact('products','companies'))
                     ->with('page_id',request()->page);
     }
     
+    public function product_scope(Request $request)
+    {   
+        $model = new Company();
+        $companies = $model->getcompanyList();
+             
+        
+        
+        $products = Product::sortable()
+            ->keywordFilter($request->keyword)
+           // ->companyIdFilter($request->companyId)
+            //->kagenPriceFilter($request->price1)
+            //->jougenPriceFilter($request->price2)
+            //->kagenStockFilter($request->stock1)
+            //->jougenStockFilter($request->stock2)
+            
+            ->paginate(10)
+            ->appends($request->all());
+        return response()->json($products);
+        
+                   
+    }
 
 
 
@@ -89,12 +115,12 @@ class ProductController extends Controller
     }
 
 //削除処理
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         DB::beginTransaction();
         
         try{
-            $product = Product::find($id);
+            $product = Product::findOrFail($request->id);
             $product->delete();
             DB::commit();
         }catch(\Exception $e){

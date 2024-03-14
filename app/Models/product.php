@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use DB;
+use Kyslik\ColumnSortable\Sortable;
 
 
 class product extends Model
 {
     use HasFactory;  
+    use Sortable;
 
     protected $table = 'products';
     protected $primaryKey = "id";
@@ -24,10 +26,14 @@ class product extends Model
         'created_at',
         'updated_at'
     ];
-    //リレーション   
+    //リレーション
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 
     //テーブル取得
@@ -81,6 +87,36 @@ class product extends Model
         return $query->join('companies','products.company_id','=','companies.id')
                       ->select('products.*')
                       ->where('company_id',$companyId);
+    }
+    public function scopeKagenPriceFilter($query,string $price1=null)
+    {
+        if(!$price1){
+        return $query;
+        }
+        return $query->where ('price','>=',$price1);
+    }
+    public function scopeJougenPriceFilter($query,string $price2=null)
+    {
+        if(!$price2){
+        return $query;
+        }
+        return $query->where ('price','<=',$price2);
+    }
+
+
+    public function scopekagenStockFilter($query,string $stock1=null)
+    {
+        if(!$stock1){
+            return $query;
+        }
+        return $query->where('stock','>=', $stock1);
+    }
+    public function scopejougenStockFilter($query,string $stock2=null)    
+    {    
+        if(!$stock2){
+            return $query;
+        }
+        return $query->where('stock','<=',$stock2);
     }
 }
 

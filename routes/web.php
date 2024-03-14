@@ -27,6 +27,7 @@ Route::get('home',[App\Http\Controllers\HomeController::class,'index'])->name('h
 //一覧画面表示
 Route::get('/product_view', [App\Http\Controllers\ProductController::class, 'showProduct_view'])->name('product_view');
 
+Route::get('/product_scope', [App\Http\Controllers\ProductController::class, 'product_scope'])->name('product_scope');
 //削除処理
 Route::post('/product_view/{id}',[App\Http\Controllers\ProductController::class, 'destroy'])->name('destroy');
 //商品登録画面表示

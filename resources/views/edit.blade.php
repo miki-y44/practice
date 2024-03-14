@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label for="company_id">メーカー名<span>*</span></label>
-                    <select class="form-control" id="company_id" name="company_id" value="{{$product->id}}">
+                    <select class="form-control" id="company_id" name="company_id" value="{{$product->company_name}}">
                             <option value="" selected disabled></option>
                         @foreach($companies as $company)   
                             <option value="{{$company->id}}">{{$company->company_name}}</option>

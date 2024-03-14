@@ -11,6 +11,24 @@ body{
     margin-bottom: 30px;
 
 }
+.form-control-A,.form-control-C,.form-control-E{
+    float: left;
+    text-align: center;
+    margin: 0 auto 0 0;
+    
+    
+}
+.form-control-B,.form-control-D,.form-control-F{
+    float: left;
+    text-align: center;
+    margin: 0 auto 0 0;
+    
+    
+}   
+.kara{
+    float: left;
+}
+
 .product-table {
     width: 70%;
     border:solid #333 1px;

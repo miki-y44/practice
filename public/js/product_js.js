@@ -13,15 +13,15 @@ function fmConfirm(){
     };
 };
 
-function dleConfirm(){
-    if(window.confirm('本当に削除してよろしいですか？')){
-        window.alert('削除しました。');
-        return true;
-    }else{
-        window.alert('削除をやめました。');
-        return false;
-    };
-};
+//function dleConfirm(){
+  //  if(window.confirm('本当に削除してよろしいですか？')){
+    //    window.alert('削除しました。');
+      //  return true;
+    //}else{
+      //  window.alert('削除をやめました。');
+        //return false;
+    //};
+//};
 
 function editConfirm(){
     if(window.confirm('本当に更新してよろしいですか？')){

@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="csrf-token" content="{{csrf_token()}}">
         <link href="{{asset('/css/product_css.css')}}" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/ajax_js.js') }}"></script>
         <title>自動販売機売上管理</title>
     </head>
     <body>
@@ -28,16 +31,23 @@
             <div class="search">
                 <form action ="{{route('product_view')}}" method = "GET">
                   @csrf
-                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="検索キーワード">
-                     
-                    <select class="form-control" id="companyId" name="companyId" placeholder="メーカー名" >
+                    
+                    <input type="number" class="form-control-A" id="price1" name="price1" placeholder="価格下限">
+                    <div class = "kara"> ~ </div>
+                    <input type="number" class="form-control-B" id="price2" name="price2" placeholder="価格上限">
+                    <input type="number" class="form-control-C" id="stock1" name="stock1" placeholder="在庫数下限">
+                    <div class = "kara"> ~ </div>
+                    <input type="number" class="form-control-D" id="stock2" name="stock2" placeholder="在庫数上限">
+                    <input type="text" class="form-control-E" id="keyword" name="keyword" placeholder="検索キーワード">
+                         
+                    <select aria-label="State" class="form-control-F" id="companyId" name="companyId" placeholder="メーカー名" >
                           <option value="" selected disabled>メーカー名</option> 
                         @foreach($companies as $company) 
                           <option value="{{$company->id}}">{{$company->company_name}}</option>
                         @endforeach 
                     </select>
                     
-                    <button type='submit' class="btn btn-default" name='search'>検索</button>
+                    <button type='submit' class="search-btn" id="search-btn" name='search'>検索</button>
                 </form>
             </div>
         </div>    
@@ -46,12 +56,12 @@
             <table class="product-table">
                 <thead class="name">
                     <tr>
-                        <th>ID</th>
-                        <th>商品画像</th>
-                        <th>商品名</th>
-                        <th>価格</th>
-                        <th>在庫数</th>
-                        <th>メーカー名</th>
+                        <th>@sortablelink('id','ID')</th>
+                        <th>@sortablelink('img_path','商品画像')</th>
+                        <th>@sortablelink('product_name','商品名')</th>
+                        <th>@sortablelink('price','価格')</th>
+                        <th>@sortablelink('stock','在庫数')</th>
+                        <th>@sortablelink('company_name','メーカー名')</th>
                         <th><a href="{{ route('regist')}}"name='regist-btn' class="regist-btn">新規登録</a></th>
                         
                     </tr>
@@ -68,10 +78,10 @@
                             <td>{{$product->company->company_name}}</td>
                             <td class="btns">
                                 <a href="{{route('detail',['id'=>$product->id])}}?page_id={{$page_id}}" name="detail-btn" class="detail-btn">詳細</a>
-                            
-                                <form action="{{route('destroy',$product->id)}}" method="post" onsubmit="return dleConfirm()">
+                                
+                                <form action="{{route('destroy',$product->id)}}" method="post" >
                                     @csrf
-                                   <button type="submit" class="delete-btn" name="delete">削除</button>
+                                   <input data-product_id="{{$product->id}}" type="submit" class="delete-btn" name="delete" value="削除">
                                 </form>   
                             </td>
                     
@@ -85,5 +95,7 @@
             {{$products->links('pagination::bootstrap-4')}}
         </footer>
         <script src="{{ asset('js/product_js.js') }}"></script>
+        
+       
     </body>
 </html>
