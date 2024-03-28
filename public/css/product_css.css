@@ -7,27 +7,42 @@ body{
     font-family:"Yu Gothic UI";
 }
 
-.search{
-    margin-bottom: 30px;
+.priceSearch{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+}
+.stockSearch{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
 
 }
-.form-control-A,.form-control-C,.form-control-E{
-    float: left;
-    text-align: center;
-    margin: 0 auto 0 0;
-    
-    
-}
-.form-control-B,.form-control-D,.form-control-F{
-    float: left;
-    text-align: center;
-    margin: 0 auto 0 0;
-    
-    
-}   
 .kara{
-    float: left;
+    margin: 0 10px ;
 }
+.nameSearch{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+.btn-containar{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+.search-btn{
+    margin-right: 30px;
+    margin-left: 400px;
+}
+.box{
+    margin-right: 35px;
+}
+
+
 
 .product-table {
     width: 70%;

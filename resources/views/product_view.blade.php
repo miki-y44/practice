@@ -31,25 +31,35 @@
             <div class="search-form">
                 <form action ="{{route('product_scope')}}" method = "GET">
                   @csrf
-                    
-                    <input type="number" class="form-control-A" id="price1" name="price1" placeholder="価格下限">
-                    <div class = "kara"> ~ </div>
-                    <input type="number" class="form-control-B" id="price2" name="price2" placeholder="価格上限">
-                    <input type="number" class="form-control-C" id="stock1" name="stock1" placeholder="在庫数下限">
-                    <div class = "kara"> ~ </div>
-                    <input type="number" class="form-control-D" id="stock2" name="stock2" placeholder="在庫数上限">
-                    <input type="text" class="form-control-E" id="keyword" name="keyword" placeholder="検索キーワード">
+                    <div class= "priceSearch">
+                        <div>〇価格検索〇</div>
+                        <input type="number"  id="price1" name="price1" placeholder="価格下限">
+                        <div class = "kara"> ~ </div>
+                        <input type="number"  id="price2" name="price2" placeholder="価格上限">
+                    </div>
+                    <div class="stockSearch"> 
+                        <div>〇在庫検索〇</div>
+                        <input type="number"  id="stock1" name="stock1" placeholder="在庫数下限">
+                        <div class = "kara"> ~ </div>
+                        <input type="number"  id="stock2" name="stock2" placeholder="在庫数上限">
+                    </div>
+                    <div class="nameSearch">
+                        <div>〇名前検索〇</div>
+                        <input type="text" class="box" id="keyword" name="keyword" placeholder="検索キーワード">
                          
-                    <select aria-label="State" class="form-control-F" id="companyId" name="companyId" placeholder="メーカー名" >
-                          <option value="" selected disabled>メーカー名</option> 
-                        @foreach($companies as $company) 
-                          <option value="{{$company->id}}">{{$company->company_name}}</option>
-                        @endforeach 
-                    </select>
-                    
-                    <button type='submit' class="search-btn" id="search-btn" name='search'>検索</button>
+                        <select aria-label="State" class="box" id="companyId" name="companyId" placeholder="メーカー名" >
+                              <option value="" selected disabled>メーカー名</option> 
+                            @foreach($companies as $company) 
+                              <option value="{{$company->id}}">{{$company->company_name}}</option>
+                            @endforeach 
+                        </select>
+                    </div>
+                    <div class="btn-containar">
+                        <button type='submit' class="search-btn" id="search-btn" name='search'>検索</button>
+                        <a href="{{route('product_view')}}" name="list" class="list">一覧画面へ</a>
+                    </div>               
                 </form>
-                    <a href="{{route('product_view')}}" name="list" class="list">一覧画面へ</a>
+                    
             </div>
         </div>    
         <div class = "productlist">
