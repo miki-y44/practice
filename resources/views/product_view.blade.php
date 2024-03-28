@@ -27,9 +27,9 @@
             @endif
         </header>
             <div class='top-containar'>
-            <h1>商品一覧画面</h1>
-            <div class="search">
-                <form action ="{{route('product_view')}}" method = "GET">
+            <h1 class = "titleName">商品一覧画面</h1>
+            <div class="search-form">
+                <form action ="{{route('product_scope')}}" method = "GET">
                   @csrf
                     
                     <input type="number" class="form-control-A" id="price1" name="price1" placeholder="価格下限">
@@ -49,6 +49,7 @@
                     
                     <button type='submit' class="search-btn" id="search-btn" name='search'>検索</button>
                 </form>
+                    <a href="{{route('product_view')}}" name="list" class="list">一覧画面へ</a>
             </div>
         </div>    
         <div class = "productlist">
@@ -66,7 +67,7 @@
                         
                     </tr>
                 </thead>        
-                <tbody class="body">
+                <tbody class="product-body">
                     @foreach($products as $product)
                         <tr>
                         
@@ -77,7 +78,7 @@
                             <td>{{$product->stock}}</td>
                             <td>{{$product->company->company_name}}</td>
                             <td class="btns">
-                                <a href="{{route('detail',['id'=>$product->id])}}?page_id={{$page_id}}" name="detail-btn" class="detail-btn">詳細</a>
+                                <a href="{{route('detail',['id'=>$product->id])}}" name="detail-btn" class="detail-btn">詳細</a>
                                 
                                 <form action="{{route('destroy',$product->id)}}" method="post" >
                                     @csrf

@@ -33,58 +33,37 @@ $(function (){
 });
 
 $(function(){
-
     $(".search-btn").on("click",function(e){
         e.preventDefault()
-        //$.ajaxSetup({
-          //  headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
-        //})
-        //$('.product-table tbody').empty();
-        let keyword = $('#keyword').val();
-        let price1 = $('#price1').val();
-        let price2 = $('#price2').val();
-        let stock1 = $('#stock1').val();
-        let stock2 = $('#stock2').val();
-        let companyId = $('#companyId').val();
-        console.log(keyword);
+        $.ajaxSetup({
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+        })
+        //let forData = $(".search-form").serialize();
+        
+        let inputKeyword = $("#keyword").val();
+        let inputPrice1 = $('#price1').val();
+        let inputPrice2 = $('#price2').val();
+        let inputStock1 = $('#stock1').val();
+        let inputStock2 = $('#stock2').val();
+        let inputCompanyId = $('#companyId').val();
+
         $.ajax({
-                
             url:"/vending/public/product_scope/",
             type:"GET",
-            //data:{keyword:keyword,'price1':price1,'price2':price2,'stock1':stock1,'stock2':stock2,'companyId':companyId,},
-            data:{keyword:keyword},
-            dataType:"json"
+            data:{keyword:inputKeyword,
+                price1:inputPrice1,
+                price2:inputPrice2,
+                stock1:inputStock1,
+                stock2:inputStock2,
+                companyId:inputCompanyId},
+            dataType:"html"
         })
         .done(function(data){
-            //console.log(data);
-        
-            $.each(data.products,function(key,value){
-                
-                let id = value.id;
-                let img_path = value.img_path;
-                let product_name = value.product_name;
-                let price = value.price;
-                let stock = value.stock;
-                let company_name = value.company_name;
-                
-                let html = `
-                <tr>
-                <td>${id}</td>
-                <td><img src="${img_path}" alt = "商品画像"></td>
-                <td>${product_name}</td>
-                <td>${price}</td>
-                <td>${stock}</td>
-                <td>${company_name}</td>
-                            
-                </tr> `;
-                $(".product-table").append(html);
-            })
-            
+            let newTable = $(data).find(".product-table");
+            $(".product-table").replaceWith(newTable);
             alert('検索結果');
-            console.log(keyword);
         })
-        .fail(function(){
-            alert('失敗');
-        });
-    });
-});
+        
+    })
+})
+

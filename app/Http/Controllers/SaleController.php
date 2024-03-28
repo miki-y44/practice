@@ -9,7 +9,7 @@ use App\Models\Product;
 class SaleController extends Controller
 {
     //
-  public function buy(Request $request){
+  public function purchase(Request $request){
 
   
   

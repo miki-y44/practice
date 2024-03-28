@@ -11,7 +11,7 @@ class sale extends Model
     use HasFactory;
 
     protected $table = 'sales';
-    protected $primaryKey = "id";
+    
     protected $fillable = ['product_id','created_at','updated_at'];
 
     public function product()

@@ -28,17 +28,13 @@ class ProductController extends Controller
         
         
         $products = Product::sortable()
-            ->keywordFilter($request->keyword)
-            ->companyIdFilter($request->companyId)
-            ->kagenPriceFilter($request->price1)
-            ->jougenPriceFilter($request->price2)
-            ->kagenStockFilter($request->stock1)
-            ->jougenStockFilter($request->stock2)
-            ->paginate(10)
-            ->appends($request->all());
-           
-        return view('product_view',compact('products','companies'))
+            
+            
+            ->paginate(10);
+            
+        return view('product_view',['products'=>$products,'companies'=>$companies])
                     ->with('page_id',request()->page);
+                    
     }
     
     public function product_scope(Request $request)
@@ -50,16 +46,15 @@ class ProductController extends Controller
         
         $products = Product::sortable()
             ->keywordFilter($request->keyword)
-           // ->companyIdFilter($request->companyId)
-            //->kagenPriceFilter($request->price1)
-            //->jougenPriceFilter($request->price2)
-            //->kagenStockFilter($request->stock1)
-            //->jougenStockFilter($request->stock2)
-            
+            ->companyIdFilter($request->companyId)
+            ->kagenPriceFilter($request->price1)
+            ->jougenPriceFilter($request->price2)
+            ->kagenStockFilter($request->stock1)
+            ->jougenStockFilter($request->stock2)
             ->paginate(10)
             ->appends($request->all());
-        return response()->json($products);
-        
+       
+        return view('product_view',['products'=>$products,'companies'=>$companies]);
                    
     }
 
