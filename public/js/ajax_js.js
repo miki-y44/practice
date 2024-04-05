@@ -1,8 +1,11 @@
 //console.log('a');
-$(function (){
 
+function deleteAjax(){ 
+$(function (){
+     
     $(".delete-btn").on("click",function(e){
         e.preventDefault()
+        
         var deleteConfirm = window.confirm('本当に削除してよろしいですか？');
       
         if(deleteConfirm == true){
@@ -31,6 +34,8 @@ $(function (){
         };
     });
 });
+};
+deleteAjax();
 
 $(function(){
     $(".search-btn").on("click",function(e){
@@ -61,7 +66,13 @@ $(function(){
         .done(function(data){
             let newTable = $(data).find(".product-table");
             $(".product-table").replaceWith(newTable);
+            $(".delete-btn").on("click",function(e){
+                e.preventDefault()
+                deleteAjax()
+            });
+            
             alert('検索結果');
+            
         })
         
     })
